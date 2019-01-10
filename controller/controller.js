@@ -32,6 +32,9 @@ function setup()
   getAudioContext().resume();
   createCanvas(windowWidth,windowHeight);
   background(255);
+
+  box1x = 0;
+  box1y = 0;
   
   
   colourQuadrant1 = color("#bfee10");
@@ -60,7 +63,7 @@ noStroke();
 
 //draw the box for quad1
 fill(colourQuadrant1);
-rect(0, 0, width/2, height/2);
+rect(box1x, box1y, width/2, height/2);
 
 //draw the box for quad2
 fill(colourQuadrant2);
@@ -81,7 +84,7 @@ textAlign(CENTER, CENTER);
 
 //draw quad1 and count
 text("1",width*0.25,(height/2)-200);
-text(quadrant1,width*0.25,(height/2)+60);
+// text(quadrant1,width*0.25,(height/2)+60);
 //draw quad2 and count
 text("2",width*0.75,(height/2)-200);
 // text(quadrant2,width*0.75,(height/2)+60);
@@ -119,25 +122,33 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
   {
       if(inMessage.message.vote == "yes")
       {
-        quadrant1+=1;
+        colourQuadrant1 = color("#19bb10");
       }
       if(inMessage.message.vote == "no")
       {
-        noCount+=1;
+        quadrant2+=1;
       }
   }
 }
 
 function mousePressed()
 {
-  if(mouseX<=width/2 && mouseY >= height/2){
+
+  if(mouseX > 0 && mouseX < width/2 && mouseY > 0 && mouseY < height/2){
     choice = "yes";
+  } 
+
+  if(mouseX > width/2 && mouseX < width && mouseY > 0 && mouseY < height/2){
+    console.log("clicked 2");
+  } 
+
+  if(mouseX > width/2 && mouseX < width && mouseY > height/2 && mouseY < height){
+    console.log("clicked 4")
   }
 
-  // else
-  // {
-  //   choice = "no";
-  // }
+  if(mouseX > 0 && mouseX < width/2 && mouseY > height/2 && mouseY < height){
+    console.log("clicked 3")
+  }
 
 sendTheMessage();
 
