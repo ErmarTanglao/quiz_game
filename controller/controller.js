@@ -23,6 +23,7 @@ var colourQuadrant3;
 var colourQuadrant4;
 
 var choice;
+var vote = false;
 
 //name used to sort your messages. used like a radio station. can be called anything
 var channelName = "theVote";
@@ -120,34 +121,57 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
   // simple error check to match the incoming to the channelName
   if(inMessage.channel == channelName)
   {
-      if(inMessage.message.vote == "yes")
+      if(inMessage.message.vote == "answer1")
       {
         colourQuadrant1 = color("#19bb10");
       }
-      if(inMessage.message.vote == "no")
+
+      if(inMessage.message.vote == "answer2")
       {
-        quadrant2+=1;
+        colourQuadrant2 = color("#6713df")
+      }
+
+      if(inMessage.message.vote == "answer3")
+      {
+        colourQuadrant4 = color("#065aee");
+      }
+
+      if(inMessage.message.vote == "answer4")
+      {
+        colourQuadrant3 = color("#f06100");
       }
   }
 }
 
 function mousePressed()
 {
-
+  //Button Pressing Collision
   if(mouseX > 0 && mouseX < width/2 && mouseY > 0 && mouseY < height/2){
-    choice = "yes";
+    if(vote != true){
+      choice = "answer1";
+      vote = true;
+    }
   } 
 
   if(mouseX > width/2 && mouseX < width && mouseY > 0 && mouseY < height/2){
-    console.log("clicked 2");
+    if(vote != true){
+      choice = "answer2";
+      vote = true;
+    }
   } 
 
   if(mouseX > width/2 && mouseX < width && mouseY > height/2 && mouseY < height){
-    console.log("clicked 4")
+    if(vote != true){
+      choice = "answer3";
+      vote = true;
+    }
   }
 
   if(mouseX > 0 && mouseX < width/2 && mouseY > height/2 && mouseY < height){
-    console.log("clicked 3")
+    if(vote != true){
+      choice = "answer4";
+      vote = true;
+    }
   }
 
 sendTheMessage();
