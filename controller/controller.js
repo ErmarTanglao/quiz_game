@@ -23,7 +23,7 @@ var colourQuadrant3;
 var colourQuadrant4;
 
 var choice;
-var vote = false;
+var voteState = false;
 
 //name used to sort your messages. used like a radio station. can be called anything
 var channelName = "gameShow";
@@ -141,36 +141,40 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
         colourQuadrant3 = color("#f06100");
       }
   }
+
+  if(voteState == true){
+    voteState = inMessage.message.next
+  }
 }
 
 function mousePressed()
 {
   //Button Pressing Collision
   if(mouseX > 0 && mouseX < width/2 && mouseY > 0 && mouseY < height/2){
-    if(vote != true){
+    if(voteState != true){
       choice = "answer1";
-      vote = true;
+      voteState = true;
     }
   } 
 
   if(mouseX > width/2 && mouseX < width && mouseY > 0 && mouseY < height/2){
-    if(vote != true){
+    if(voteState != true){
       choice = "answer2";
-      vote = true;
+      voteState = true;
     }
   } 
 
   if(mouseX > width/2 && mouseX < width && mouseY > height/2 && mouseY < height){
-    if(vote != true){
+    if(voteState != true){
       choice = "answer3";
-      vote = true;
+      voteState = true;
     }
   }
 
   if(mouseX > 0 && mouseX < width/2 && mouseY > height/2 && mouseY < height){
-    if(vote != true){
+    if(voteState != true){
       choice = "answer4";
-      vote = true;
+      voteState = true;
     }
   }
 

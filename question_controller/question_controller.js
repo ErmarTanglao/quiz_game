@@ -59,7 +59,7 @@ function sendTheMessage()
 {
 
 slideNumber = ((slideNumber+1)<=(totalImages-1)) ? slideNumber+=1 : 0; //shorthand for conditional assignment
-
+voteState = false
 
 //console.log(slideNumber);
 
@@ -69,7 +69,8 @@ slideNumber = ((slideNumber+1)<=(totalImages-1)) ? slideNumber+=1 : 0; //shortha
       channel: channelName,
       message: 
       {
-        slide: slideNumber       
+        slide: slideNumber,
+        next: voteState      
       }
     });
 
