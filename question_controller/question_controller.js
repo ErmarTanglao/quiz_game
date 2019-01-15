@@ -16,6 +16,7 @@ var subKey = 'sub-c-16e11ea6-1363-11e9-a898-9ef472141036';
 var nextButton;
 var slideNumber=0;
 var totalImages = 4;
+var nextQuestion = false;
 
 
 //name used to sort your messages. used like a radio station. can be called anything
@@ -59,7 +60,8 @@ function sendTheMessage()
 {
 
 slideNumber = ((slideNumber+1)<=(totalImages-1)) ? slideNumber+=1 : 0; //shorthand for conditional assignment
-voteState = false
+
+nextQuestion = true
 
 //console.log(slideNumber);
 
@@ -70,7 +72,7 @@ voteState = false
       message: 
       {
         slide: slideNumber,
-        next: voteState      
+        question: nextQuestion    
       }
     });
 

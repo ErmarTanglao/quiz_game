@@ -24,6 +24,7 @@ var colourQuadrant4;
 
 var choice;
 var voteState = false;
+var nextQuestion = false;
 
 //name used to sort your messages. used like a radio station. can be called anything
 var channelName = "gameShow";
@@ -140,10 +141,16 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
       {
         colourQuadrant3 = color("#f06100");
       }
-  }
 
-  if(voteState == true){
-    voteState = inMessage.message.next
+      if(inMessage.message.question == true){
+        colourQuadrant1 = color("#bfee10");
+        colourQuadrant2 = color("#9f13df");
+        colourQuadrant3 = color("#f09d00");
+        colourQuadrant4 = color("#06b9ee");
+        inMessage.message.question = false;
+        voteState = false;
+        console.log("next question")
+      }
   }
 }
 
