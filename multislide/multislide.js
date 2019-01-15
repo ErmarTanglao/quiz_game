@@ -11,7 +11,7 @@ var dataServer;
 var subKey = 'sub-c-16e11ea6-1363-11e9-a898-9ef472141036';
 
 //name used to sort your messages. used like a radio station. can be called anything
-var channelName = "powerpoint";
+var channelName = "gameShow";
 
 
 //image variables

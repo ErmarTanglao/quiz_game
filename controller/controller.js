@@ -26,7 +26,7 @@ var choice;
 var vote = false;
 
 //name used to sort your messages. used like a radio station. can be called anything
-var channelName = "theVote";
+var channelName = "gameShow";
 
 function setup() 
 {
