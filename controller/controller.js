@@ -15,7 +15,7 @@ var quadrant1 = 0;
 var quadrant2 = 0;
 var quadrant3 = 0;
 var quadrant4 = 0;
-var questionNumber = 1;
+var questionNumber = 0;
 
 
 var colourQuadrant1;
@@ -109,6 +109,7 @@ text(questionNumber,(width/2)-2.5,(height/2)+5);
 ///uses built in mouseClicked function to send the data to the pubnub server
 function sendTheMessage() {
  
+  slideNumber = questionNumber
 
   // Send Data to the server to draw it in all other canvases
   dataServer.publish(
@@ -116,7 +117,8 @@ function sendTheMessage() {
       channel: channelName,
       message: 
       {
-        vote: choice       //get the value from the text box and send it as part of the message   
+        vote: choice,       //get the value from the text box and send it as part of the message
+        slide: slideNumber
       }
     });
 

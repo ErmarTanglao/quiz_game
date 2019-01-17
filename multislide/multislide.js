@@ -19,6 +19,8 @@ var img = [];
 var totalImages = 4;
 var slideNumber = 0;
 var counter = 0;
+var nextQuestion = false;
+var questionNumber = 0;
 
 function preload() 
 {
@@ -51,41 +53,30 @@ function setup()
   dataServer.subscribe({channels: [channelName]});
 
 
-    //display a waiting message
-    background(255);
-    noStroke();
-    fill(0);  
-    textSize(30)
-    text("Waiting", width/2, height/2);
+    // //display a waiting message
+    // background(255);
+    // noStroke();
+    // fill(0);  
+    // textSize(30)
+    // text("Waiting", width/2, height/2);
 
 }
 
 function draw() 
 {
-
-  // background(255);
-  // noStroke();
-
-  // text(counter,width*0.25,(height/2)+60);
-
+  fill(0);
+  textSize(60);
+  text(questionNumber,(width/2)-2.5,(height/2)+5);
 }
 
 function readIncoming(inMessage) //when new data comes in it triggers this function, 
 {                               
-    background(255);
-    image(img[inMessage.message.slide],0,0); //show the image corresponds to the slide number in the array
-
+      if(inMessage.message.question == true){
+        background(255);
+        image(img[inMessage.message.slide],0,0); //show the image corresponds to the slide number in the array
+        questionNumber += 1;
+        if (questionNumber > 10){
+          questionNumber = 1
+        }
+      }
 }
-
-// function readIncoming(inMessage) //when new data comes in it triggers this function, 
-// {                               // this works becsuse we subscribed to the channel in setup()
-  
-//   // simple error check to match the incoming to the channelName
-//   if(inMessage.channel == channelName)
-//   {
-//       if(inMessage.message.question == "true")
-//       {
-//         counter+=1;
-//       }
-//   }
-// }
