@@ -15,6 +15,7 @@ var quadrant1 = 0;
 var quadrant2 = 0;
 var quadrant3 = 0;
 var quadrant4 = 0;
+var questionNumber = 1;
 
 
 var colourQuadrant1;
@@ -97,6 +98,11 @@ text("3",width*0.25,(height/2)+200);
 text("4",width*0.75,(height/2)+200);
 // text(quadrant4,width*0.75,(height/2)+60);
 
+//Question Number
+fill(0);
+textSize(60);
+text(questionNumber,(width/2)-2.5,(height/2)+5);
+
 }
 
 
@@ -150,6 +156,10 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
         inMessage.message.question = false;
         voteState = false;
         console.log("next question")
+        questionNumber += 1;
+        if (questionNumber > 10){
+          questionNumber = 1
+        }
       }
   }
 }

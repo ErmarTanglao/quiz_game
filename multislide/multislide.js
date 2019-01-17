@@ -18,6 +18,7 @@ var channelName = "gameShow";
 var img = [];
 var totalImages = 4;
 var slideNumber = 0;
+var counter = 0;
 
 function preload() 
 {
@@ -62,6 +63,10 @@ function setup()
 function draw() 
 {
 
+  // background(255);
+  // noStroke();
+
+  // text(counter,width*0.25,(height/2)+60);
 
 }
 
@@ -71,3 +76,16 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
     image(img[inMessage.message.slide],0,0); //show the image corresponds to the slide number in the array
 
 }
+
+// function readIncoming(inMessage) //when new data comes in it triggers this function, 
+// {                               // this works becsuse we subscribed to the channel in setup()
+  
+//   // simple error check to match the incoming to the channelName
+//   if(inMessage.channel == channelName)
+//   {
+//       if(inMessage.message.question == "true")
+//       {
+//         counter+=1;
+//       }
+//   }
+// }
