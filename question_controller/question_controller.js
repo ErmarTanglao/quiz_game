@@ -39,28 +39,48 @@ function setup()
   });
   
 
-  //create the button
+  // //create the button
  
-  sendButton = createButton('NEXT');
-  sendButton.position(0, 0);
-  sendButton.mousePressed(sendTheMessage);
-  sendButton.size(windowWidth,windowHeight);
+  // sendButton = createButton('NEXT');
+  // sendButton.position(0, 0);
+  // sendButton.mousePressed(sendTheMessage);
+  // sendButton.size(windowWidth,windowHeight/2);
+
+  // sendButton = createButton('ANSWER');
+  // sendButton.position(0, windowHeight/2);
+  // sendButton.mousePressed(sendTheMessage);
+  // sendButton.size(windowWidth,windowHeight/2);
+
 
 }
 
 function draw() 
 {
+buttons() 
 
-
+console.log('NEXT')
 }
 
+function buttons(){
 
+    //create the button
+ 
+    sendButton = createButton('NEXT');
+    sendButton.position(0, 0);
+    sendButton.mousePressed(sendTheMessage);
+    sendButton.size(windowWidth,windowHeight/2);
+  
+    sendButton = createButton('ANSWER');
+    sendButton.position(0, windowHeight/2);
+    sendButton.mousePressed(sendTheMessage);
+    sendButton.size(windowWidth,windowHeight/2);
+
+}
 //sends from the button press
 function sendTheMessage() 
 {
 
 slideNumber = ((slideNumber+1)<=(totalImages-1)) ? slideNumber+=1 : 0; //shorthand for conditional assignment
-
 nextQuestion = true
 
 //console.log(slideNumber);
