@@ -16,7 +16,12 @@ var quadrant2 = 0;
 var quadrant3 = 0;
 var quadrant4 = 0;
 var questionNumber = 0;
+var points = 0;
 
+var chosenAnswer1 = false;
+var chosenAnswer2 = false;
+var chosenAnswer3 = false;
+var chosenAnswer4 = false;
 
 var colourQuadrant1;
 var colourQuadrant2;
@@ -103,6 +108,11 @@ fill(0);
 textSize(60);
 text(questionNumber,(width/2)-2.5,(height/2)+5);
 
+//Points
+fill(0);
+textSize(30);
+text("Points = " + points,(width/2)-2.5,height-30);
+
 }
 
 
@@ -162,6 +172,15 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
         if (questionNumber > 10){
           questionNumber = 1
         }
+
+        if (questionNumber == 1){
+          if(chosenAnswer1 == true){
+            points += 1
+            chosenAnswer1 == false
+          }
+        }
+
+        console.log(questionNumber)
       }
   }
 }
@@ -173,6 +192,7 @@ function mousePressed()
     if(voteState != true){
       choice = "answer1";
       voteState = true;
+      chosenAnswer1 = true;
     }
   } 
 
@@ -180,6 +200,7 @@ function mousePressed()
     if(voteState != true){
       choice = "answer2";
       voteState = true;
+      chosenAnswer2 = true;
     }
   } 
 
@@ -187,6 +208,7 @@ function mousePressed()
     if(voteState != true){
       choice = "answer3";
       voteState = true;
+      chosenAnswer3 = true
     }
   }
 
@@ -194,6 +216,7 @@ function mousePressed()
     if(voteState != true){
       choice = "answer4";
       voteState = true;
+      chosenAnswer4 = true;
     }
   }
 
