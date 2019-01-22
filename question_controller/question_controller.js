@@ -13,7 +13,7 @@ var subKey = 'sub-c-16e11ea6-1363-11e9-a898-9ef472141036';
 
 //input variables
 
-var slideNumber=0;
+var slideNumber = 0;
 var totalImages = 8;
 var nextQuestion = false;
 var answerShown = false;
@@ -52,25 +52,29 @@ function buttons(){
     sendButton = createButton('NEXT');
     sendButton.position(0, 0);
     sendButton.mousePressed(sendTheMessage);
-    sendButton.size(windowWidth,windowHeight/2);
-  
-    // sendButton = createButton('ANSWER');
-    // sendButton.position(0, windowHeight/2);
-    // sendButton.mousePressed(answerButton);
-    // sendButton.size(windowWidth,windowHeight/2);
+    sendButton.size(400,400);
+
+    sendButton = createButton('RESET');
+    sendButton.position(0, 450);
+    sendButton.mousePressed(resetMessage);
+    sendButton.size(400,400);  
 
 }
+
+
+function resetMessage(){
+
+  slideNumber = 0;
+  sendTheMessage();
+  console.log(slideNumber)
+}
+
 //sends from the button press
 function sendTheMessage() {
 
-// if (answerShown == true){
   slideNumber = ((slideNumber+1)<=(totalImages-1)) ? slideNumber+=1 : 0; //shorthand for conditional assignment
   nextQuestion = true;
-  // answerShown = false
   console.log("Answer Shown")
-// }
-
-//console.log(slideNumber);
 
   //publish the number to everyone.
   dataServer.publish(

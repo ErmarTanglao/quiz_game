@@ -50,14 +50,6 @@ function setup()
   dataServer.addListener({ message: readIncoming });
   dataServer.subscribe({channels: [channelName]});
 
-
-    // //display a waiting message
-    // background(255);
-    // noStroke();
-    // fill(0);  
-    // textSize(30)
-    // text("Waiting", width/2, height/2);
-
 }
 
 function draw() 
@@ -65,7 +57,6 @@ function draw()
   fill(0);
   textSize(60);
   text(questionNumber,(width/2)-2.5,(height/2)+5);
-  console.log 
 }
 
 function readIncoming(inMessage) //when new data comes in it triggers this function, 
@@ -73,7 +64,7 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
       if(inMessage.message.question == true){
         background(255);
         image(img[inMessage.message.slide],0,0, (img[inMessage.message.slide].width*2) - 130, img[inMessage.message.slide].height + 330); //show the image corresponds to the slide number in the array
-        questionNumber += 1;
+        questionNumber = inMessage.message.slide + 1;
         if (questionNumber > 8){
           questionNumber = 1
         }

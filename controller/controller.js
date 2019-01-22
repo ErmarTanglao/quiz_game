@@ -15,7 +15,7 @@ var quadrant1 = 0;
 var quadrant2 = 0;
 var quadrant3 = 0;
 var quadrant4 = 0;
-var questionNumber = 1;
+var questionNumber = 0;
 var points = 0;
 
 var chosenAnswer1 = false;
@@ -31,6 +31,8 @@ var colourQuadrant4;
 var choice;
 var voteState = false;
 var nextQuestion = false;
+
+var answerKey = [0,4,0,3,0,2,0,3];
 
 //name used to sort your messages. used like a radio station. can be called anything
 var channelName = "gameShow";
@@ -140,27 +142,6 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
   // simple error check to match the incoming to the channelName
   if(inMessage.channel == channelName)
   {
-      //Colour for Option Boxes
-      if(inMessage.message.vote == "answer1")
-      {
-        colourQuadrant1 = color("#19bb10");
-      }
-
-      if(inMessage.message.vote == "answer2")
-      {
-        colourQuadrant2 = color("#6713df")
-      }
-
-      if(inMessage.message.vote == "answer3")
-      {
-        colourQuadrant4 = color("#065aee");
-      }
-
-      if(inMessage.message.vote == "answer4")
-      {
-        colourQuadrant3 = color("#f06100");
-      }
-
       //Reset Controller
       if(inMessage.message.question == true){
         colourQuadrant1 = color("#bfee10");
@@ -170,51 +151,10 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
         inMessage.message.question = false;
         voteState = false;
         console.log("next question")
-        questionNumber += 1;
+        questionNumber = inMessage.message.slide + 1;
         if (questionNumber > 8){
-          questionNumber = 1
+          //questionNumber = 1
           points = 0
-        }
-        
-        //Question Answer Key
-        if (questionNumber == 2){
-          if(chosenAnswer4 == true){
-            points += 1;
-            chosenAnswer4 == false;
-            console.log("right");
-          } else {
-            console.log("wrong");
-          }
-        }
-
-        if (questionNumber == 4){
-          if(chosenAnswer3 == true){
-            points += 1;
-            chosenAnswer3 == false;
-            console.log("right");
-          } else {
-            console.log("wrong");
-          }
-        }
-
-        if (questionNumber == 6){
-          if(chosenAnswer2 == true){
-            points += 1;
-            chosenAnswer2 == false;
-            console.log("right");
-          } else {
-            console.log("wrong");
-          }
-        }
-
-        if (questionNumber == 8){
-          if(chosenAnswer4 == true){
-            points += 1;
-            chosenAnswer2 == false;
-            console.log("right");
-          } else {
-            console.log("wrong");
-          }
         }
 
         console.log(questionNumber)
@@ -223,43 +163,56 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
   }
 }
 
-function mousePressed()
+function mouseClicked()
 {
   //Button Pressing Collision
   if(mouseX > 0 && mouseX < width/2 && mouseY > 0 && mouseY < height/2){
     if(voteState != true){
-      choice = "answer1";
+      choice = 1;
+      checkYourAnswer(choice);
       voteState = true;
-      chosenAnswer1 = true;
+      colourQuadrant1 = color("#19bb10");
     }
   } 
 
   if(mouseX > width/2 && mouseX < width && mouseY > 0 && mouseY < height/2){
     if(voteState != true){
-      choice = "answer2";
+      choice = 2;
+      checkYourAnswer(choice);
       voteState = true;
-      chosenAnswer2 = true;
+      colourQuadrant2 = color("#6713df")
     }
   } 
 
   if(mouseX > width/2 && mouseX < width && mouseY > height/2 && mouseY < height){
     if(voteState != true){
-      choice = "answer3";
+      choice = 4;
+      checkYourAnswer(choice);
       voteState = true;
-      chosenAnswer3 = true
+      colourQuadrant4 = color("#065aee");
     }
   }
 
   if(mouseX > 0 && mouseX < width/2 && mouseY > height/2 && mouseY < height){
     if(voteState != true){
-      choice = "answer4";
+      choice = 3;
+      checkYourAnswer(choice);
       voteState = true;
-      chosenAnswer4 = true;
+      colourQuadrant3 = color("#f06100");
     }
   }
 
 sendTheMessage();
 
+}
+
+function checkYourAnswer(answerChoice){
+  if(answerChoice==answerKey[questionNumber]){
+    console.log("You got it correct");
+    points += 1
+  } else {
+    console.log("You got it wrong")
+  }
 }
 
 
