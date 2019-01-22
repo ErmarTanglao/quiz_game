@@ -120,8 +120,6 @@ text("Points = " + points_2,(width/2)-2.5,height-30);
 
 ///uses built in mouseClicked function to send the data to the pubnub server
 function sendTheMessage() {
- 
-  slideNumber = questionNumber
 
   // Send Data to the server to draw it in all other canvases
   dataServer.publish(
@@ -130,7 +128,6 @@ function sendTheMessage() {
       message: 
       {
         vote: choice,       //get the value from the text box and send it as part of the message
-        slide: slideNumber
       }
     });
 
@@ -151,8 +148,8 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
         inMessage.message.question = false;
         voteState = false;
         console.log("next question")
-        questionNumber = inMessage.message.slide + 1;
-        if (questionNumber > 8){
+        questionNumber = inMessage.message.slide;
+        if (questionNumber > 16){
           //questionNumber = 1
           points_2 = 0
         }

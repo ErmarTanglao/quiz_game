@@ -16,7 +16,7 @@ var channelName = "gameShow";
 
 //image variables
 var img = [];
-var totalImages = 8;
+var totalImages = 16;
 var nextQuestion = false;
 var questionNumber = 0;
 
@@ -64,7 +64,7 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
       if(inMessage.message.question == true){
         background(255);
         image(img[inMessage.message.slide],0,0, (img[inMessage.message.slide].width*2) - 130, img[inMessage.message.slide].height + 330); //show the image corresponds to the slide number in the array
-        questionNumber = inMessage.message.slide + 1;
+        questionNumber = inMessage.message.slide;
         if (questionNumber > 8){
           questionNumber = 1
         }
