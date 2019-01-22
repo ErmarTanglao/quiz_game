@@ -17,8 +17,6 @@ var channelName = "gameShow";
 //image variables
 var img = [];
 var totalImages = 8;
-var slideNumber = 0;
-var counter = 0;
 var nextQuestion = false;
 var questionNumber = 0;
 
@@ -66,7 +64,8 @@ function draw()
 {
   fill(0);
   textSize(60);
-  // text(questionNumber,(width/2)-2.5,(height/2)+5);
+  text(questionNumber,(width/2)-2.5,(height/2)+5);
+  console.log 
 }
 
 function readIncoming(inMessage) //when new data comes in it triggers this function, 

@@ -11,17 +11,22 @@ var dataServer;
 var pubKey = 'pub-c-3a5429eb-d270-4869-bd02-55fe6fe7afa1';
 var subKey = 'sub-c-16e11ea6-1363-11e9-a898-9ef472141036';
 
-var quadrant1 = 0;
-var quadrant2 = 0;
-var quadrant3 = 0;
-var quadrant4 = 0;
-var questionNumber = 0;
+var quadrant1_3 = 0;
+var quadrant2_3 = 0;
+var quadrant3_3 = 0;
+var quadrant4_3 = 0;
+var questionNumber = 1;
+var points_3 = 0;
 
+var chosenAnswer1_3 = false;
+var chosenAnswer2_3 = false;
+var chosenAnswer3_3 = false;
+var chosenAnswer4_3 = false;
 
-var colourQuadrant1;
-var colourQuadrant2;
-var colourQuadrant3;
-var colourQuadrant4;
+var colourQuadrant1_3;
+var colourQuadrant2_3;
+var colourQuadrant3_3;
+var colourQuadrant4_3;
 
 var choice;
 var voteState = false;
@@ -40,10 +45,10 @@ function setup()
   box1y = 0;
   
   
-  colourQuadrant1 = color("#bfee10");
-  colourQuadrant2 = color("#9f13df");
-  colourQuadrant3 = color("#f09d00");
-  colourQuadrant4 = color("#06b9ee");
+  colourQuadrant1_3 = color("#bfee10");
+  colourQuadrant2_3 = color("#9f13df");
+  colourQuadrant3_3 = color("#f09d00");
+  colourQuadrant4_3 = color("#06b9ee");
 
    // initialize pubnub
   dataServer = new PubNub(
@@ -65,19 +70,19 @@ background(255);
 noStroke();
 
 //draw the box for quad1
-fill(colourQuadrant1);
+fill(colourQuadrant1_3);
 rect(box1x, box1y, width/2, height/2);
 
 //draw the box for quad2
-fill(colourQuadrant2);
+fill(colourQuadrant2_3);
 rect(width, 0, -width/2, height/2);
 
 //draw the box for quad3
-fill(colourQuadrant3);
+fill(colourQuadrant3_3);
 rect(0, height, width/2, -height/2);
 
 //draw the box for quad4
-fill(colourQuadrant4);
+fill(colourQuadrant4_3);
 rect(width, height, -width/2, -height/2);
 
 //draw the text
@@ -102,6 +107,11 @@ text("4",width*0.75,(height/2)+200);
 fill(0);
 textSize(60);
 text(questionNumber,(width/2)-2.5,(height/2)+5);
+
+//Points
+fill(0);
+textSize(30);
+text("Points = " + points_3,(width/2)-2.5,height-30);
 
 }
 
@@ -130,39 +140,86 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
   // simple error check to match the incoming to the channelName
   if(inMessage.channel == channelName)
   {
-      if(inMessage.message.vote == "answer1")
+      //Colour for Option Boxes
+      if(inMessage.message.vote == "answer1_3")
       {
-        colourQuadrant1 = color("#19bb10");
+        colourQuadrant1_3 = color("#19bb10");
       }
 
-      if(inMessage.message.vote == "answer2")
+      if(inMessage.message.vote == "answer2_3")
       {
-        colourQuadrant2 = color("#6713df")
+        colourQuadrant2_3 = color("#6713df")
       }
 
-      if(inMessage.message.vote == "answer3")
+      if(inMessage.message.vote == "answer3_3")
       {
-        colourQuadrant4 = color("#065aee");
+        colourQuadrant4_3 = color("#065aee");
       }
 
-      if(inMessage.message.vote == "answer4")
+      if(inMessage.message.vote == "answer4_3")
       {
-        colourQuadrant3 = color("#f06100");
+        colourQuadrant3_3 = color("#f06100");
       }
 
+      //Reset Controller
       if(inMessage.message.question == true){
-        colourQuadrant1 = color("#bfee10");
-        colourQuadrant2 = color("#9f13df");
-        colourQuadrant3 = color("#f09d00");
-        colourQuadrant4 = color("#06b9ee");
+        colourQuadrant1_3 = color("#bfee10");
+        colourQuadrant2_3 = color("#9f13df");
+        colourQuadrant3_3 = color("#f09d00");
+        colourQuadrant4_3 = color("#06b9ee");
         inMessage.message.question = false;
         voteState = false;
         console.log("next question")
         questionNumber += 1;
-        if (questionNumber > 10){
+        if (questionNumber > 8){
           questionNumber = 1
+          points_3 = 0
         }
+        
+        //Question Answer Key
+        if (questionNumber == 2){
+          if(chosenAnswer4_3 == true){
+            points_3 += 1;
+            chosenAnswer4_3 == false;
+            console.log("right");
+          } else {
+            console.log("wrong");
+          }
+        }
+
+        if (questionNumber == 4){
+          if(chosenAnswer3_3 == true){
+            points_3 += 1;
+            chosenAnswer3_3 == false;
+            console.log("right");
+          } else {
+            console.log("wrong");
+          }
+        }
+
+        if (questionNumber == 6){
+          if(chosenAnswer2_3 == true){
+            points_3 += 1;
+            chosenAnswer2_3 == false;
+            console.log("right");
+          } else {
+            console.log("wrong");
+          }
+        }
+
+        if (questionNumber == 8){
+          if(chosenAnswer4_3 == true){
+            points_3 += 1;
+            chosenAnswer2_3 == false;
+            console.log("right");
+          } else {
+            console.log("wrong");
+          }
+        }
+
+        console.log(questionNumber)
       }
+
   }
 }
 
@@ -171,29 +228,33 @@ function mousePressed()
   //Button Pressing Collision
   if(mouseX > 0 && mouseX < width/2 && mouseY > 0 && mouseY < height/2){
     if(voteState != true){
-      choice = "answer1";
+      choice = "answer1_3";
       voteState = true;
+      chosenAnswer1_3 = true;
     }
   } 
 
   if(mouseX > width/2 && mouseX < width && mouseY > 0 && mouseY < height/2){
     if(voteState != true){
-      choice = "answer2";
+      choice = "answer2_3";
       voteState = true;
+      chosenAnswer2_3 = true;
     }
   } 
 
   if(mouseX > width/2 && mouseX < width && mouseY > height/2 && mouseY < height){
     if(voteState != true){
-      choice = "answer3";
+      choice = "answer3_3";
       voteState = true;
+      chosenAnswer3_3 = true
     }
   }
 
   if(mouseX > 0 && mouseX < width/2 && mouseY > height/2 && mouseY < height){
     if(voteState != true){
-      choice = "answer4";
+      choice = "answer4_3";
       voteState = true;
+      chosenAnswer4_3 = true;
     }
   }
 

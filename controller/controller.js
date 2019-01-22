@@ -103,10 +103,10 @@ text("3",width*0.25,(height/2)+200);
 text("4",width*0.75,(height/2)+200);
 // text(quadrant4,width*0.75,(height/2)+60);
 
-// //Question Number
-// fill(0);
-// textSize(60);
-// text(questionNumber,(width/2)-2.5,(height/2)+5);
+//Question Number
+fill(0);
+textSize(60);
+text(questionNumber,(width/2)-2.5,(height/2)+5);
 
 //Points
 fill(0);
