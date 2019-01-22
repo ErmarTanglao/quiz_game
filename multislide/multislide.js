@@ -16,7 +16,7 @@ var channelName = "gameShow";
 
 //image variables
 var img = [];
-var totalImages = 4;
+var totalImages = 8;
 var slideNumber = 0;
 var counter = 0;
 var nextQuestion = false;
@@ -27,7 +27,7 @@ function preload()
   //rather than making separate variables we are loading them all into an array
   for (var i = 0; i<totalImages; i++) 
   {
-    img[i] = loadImage("load/img" + (i+1) + ".png");
+    img[i] = loadImage("load/img" + (i+1) + ".jpg");
   }
 
 }
@@ -66,16 +66,16 @@ function draw()
 {
   fill(0);
   textSize(60);
-  text(questionNumber,(width/2)-2.5,(height/2)+5);
+  // text(questionNumber,(width/2)-2.5,(height/2)+5);
 }
 
 function readIncoming(inMessage) //when new data comes in it triggers this function, 
 {                               
       if(inMessage.message.question == true){
         background(255);
-        image(img[inMessage.message.slide],0,0); //show the image corresponds to the slide number in the array
+        image(img[inMessage.message.slide],0,0, (img[inMessage.message.slide].width*2) - 130, img[inMessage.message.slide].height + 330); //show the image corresponds to the slide number in the array
         questionNumber += 1;
-        if (questionNumber > 10){
+        if (questionNumber > 8){
           questionNumber = 1
         }
       }

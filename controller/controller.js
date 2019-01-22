@@ -15,7 +15,7 @@ var quadrant1 = 0;
 var quadrant2 = 0;
 var quadrant3 = 0;
 var quadrant4 = 0;
-var questionNumber = 0;
+var questionNumber = 1;
 var points = 0;
 
 var chosenAnswer1 = false;
@@ -103,10 +103,10 @@ text("3",width*0.25,(height/2)+200);
 text("4",width*0.75,(height/2)+200);
 // text(quadrant4,width*0.75,(height/2)+60);
 
-//Question Number
-fill(0);
-textSize(60);
-text(questionNumber,(width/2)-2.5,(height/2)+5);
+// //Question Number
+// fill(0);
+// textSize(60);
+// text(questionNumber,(width/2)-2.5,(height/2)+5);
 
 //Points
 fill(0);
@@ -140,6 +140,7 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
   // simple error check to match the incoming to the channelName
   if(inMessage.channel == channelName)
   {
+      //Colour for Option Boxes
       if(inMessage.message.vote == "answer1")
       {
         colourQuadrant1 = color("#19bb10");
@@ -160,6 +161,7 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
         colourQuadrant3 = color("#f06100");
       }
 
+      //Reset Controller
       if(inMessage.message.question == true){
         colourQuadrant1 = color("#bfee10");
         colourQuadrant2 = color("#9f13df");
@@ -169,19 +171,55 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
         voteState = false;
         console.log("next question")
         questionNumber += 1;
-        if (questionNumber > 10){
+        if (questionNumber > 8){
           questionNumber = 1
+          points = 0
+        }
+        
+        //Question Answer Key
+        if (questionNumber == 2){
+          if(chosenAnswer4 == true){
+            points += 1;
+            chosenAnswer4 == false;
+            console.log("right");
+          } else {
+            console.log("wrong");
+          }
         }
 
-        if (questionNumber == 1){
-          if(chosenAnswer1 == true){
-            points += 1
-            chosenAnswer1 == false
+        if (questionNumber == 4){
+          if(chosenAnswer3 == true){
+            points += 1;
+            chosenAnswer3 == false;
+            console.log("right");
+          } else {
+            console.log("wrong");
+          }
+        }
+
+        if (questionNumber == 6){
+          if(chosenAnswer2 == true){
+            points += 1;
+            chosenAnswer2 == false;
+            console.log("right");
+          } else {
+            console.log("wrong");
+          }
+        }
+
+        if (questionNumber == 8){
+          if(chosenAnswer4 == true){
+            points += 1;
+            chosenAnswer2 == false;
+            console.log("right");
+          } else {
+            console.log("wrong");
           }
         }
 
         console.log(questionNumber)
       }
+
   }
 }
 

@@ -13,9 +13,8 @@ var subKey = 'sub-c-16e11ea6-1363-11e9-a898-9ef472141036';
 
 //input variables
 
-var nextButton;
 var slideNumber=0;
-var totalImages = 4;
+var totalImages = 8;
 var nextQuestion = false;
 var answerShown = false;
 
@@ -57,7 +56,7 @@ function buttons(){
   
     // sendButton = createButton('ANSWER');
     // sendButton.position(0, windowHeight/2);
-    // sendButton.mousePressed(actionButton);
+    // sendButton.mousePressed(answerButton);
     // sendButton.size(windowWidth,windowHeight/2);
 
 }
@@ -80,17 +79,10 @@ function sendTheMessage() {
       message: 
       {
         slide: slideNumber,
-        question: nextQuestion    
+        question: nextQuestion,
       }
     });
 
 }
-
-// function actionButton(){
-//   // slideNumber = ((slideNumber+1)<=(totalImages-1)) ? slideNumber+=1 : 0; //shorthand for conditional assignment
-//   answerShown = true 
-
-//   sendTheMessage()
-// }
 
 
