@@ -64,7 +64,7 @@ function buttons(){
 
 function resetMessage(){
 
-  slideNumber = 0;
+  slideNumber = (-1);
   sendTheMessage();
   console.log(slideNumber)
 }

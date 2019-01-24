@@ -56,7 +56,7 @@ function draw()
 {
   fill(0);
   textSize(60);
-  text(questionNumber,(width/2)-2.5,(height/2)+5);
+  // text(questionNumber,(width/2)-2.5,(height/2)+5);
 }
 
 function readIncoming(inMessage) //when new data comes in it triggers this function, 
@@ -65,7 +65,7 @@ function readIncoming(inMessage) //when new data comes in it triggers this funct
         background(255);
         image(img[inMessage.message.slide],0,0, (img[inMessage.message.slide].width*2) - 130, img[inMessage.message.slide].height + 330); //show the image corresponds to the slide number in the array
         questionNumber = inMessage.message.slide;
-        if (questionNumber > 8){
+        if (questionNumber > 16){
           questionNumber = 1
         }
       }
