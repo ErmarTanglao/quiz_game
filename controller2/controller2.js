@@ -32,7 +32,8 @@ var choice;
 var voteState = false;
 var nextQuestion = false;
 
-var answerKey = [0,4,0,3,0,2,0,3,0,1,0,1,0,3,0,2];
+// var answerKey = [0,4,0,3,0,2,0,3,0,1,0,1,0,3,0,2];
+var answerKey = [4,0,3,0,2,0,3,0,1,0,1,0,3,0,2,0];
 
 //name used to sort your messages. used like a radio station. can be called anything
 var channelName = "gameShow";
