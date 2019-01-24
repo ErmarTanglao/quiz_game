@@ -198,6 +198,7 @@ function mouseClicked()
       voteState = true;
       colourQuadrant3_2 = color("#f06100");
     }
+    console.log("clicked")
   }
 
 sendTheMessage();
@@ -207,7 +208,7 @@ sendTheMessage();
 function checkYourAnswer(answerChoice){
   if(answerChoice==answerKey[questionNumber]){
     console.log("You got it correct");
-    points += 1
+    points_2 += 1
   } else {
     console.log("You got it wrong")
   }

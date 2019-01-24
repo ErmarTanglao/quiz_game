@@ -208,7 +208,7 @@ sendTheMessage();
 function checkYourAnswer(answerChoice){
   if(answerChoice==answerKey[questionNumber]){
     console.log("You got it correct");
-    points += 1
+    points_3 += 1
   } else {
     console.log("You got it wrong")
   }

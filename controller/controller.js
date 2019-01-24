@@ -38,6 +38,18 @@ var answerKey = [4,0,3,0,2,0,3,0,1,0,1,0,3,0,2,0];
 //name used to sort your messages. used like a radio station. can be called anything
 var channelName = "gameShow";
 
+// function preload() 
+// {
+//   img = loadImage('buttons/img1.png');
+//   img = loadImage('buttons/img2.png');
+//   img = loadImage('buttons/img3.png');
+//   img = loadImage('buttons/img4.png');
+//   img = loadImage('buttons/img5.png');
+//   img = loadImage('buttons/img6.png');
+//   img = loadImage('buttons/img7.png');
+//   img = loadImage('buttons/img8.png');
+// }
+
 function setup() 
 {
   getAudioContext().resume();
