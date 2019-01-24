@@ -94,16 +94,16 @@ textSize(40);
 textAlign(CENTER, CENTER);
 
 //draw quad1 and count
-text("1",width*0.25,(height/2)-200);
+text("A",width*0.25,(height/2)-200);
 // text(quadrant1,width*0.25,(height/2)+60);
 //draw quad2 and count
-text("2",width*0.75,(height/2)-200);
+text("B",width*0.75,(height/2)-200);
 // text(quadrant2,width*0.75,(height/2)+60);
 //draw quad3 and count
-text("3",width*0.25,(height/2)+200);
+text("C",width*0.25,(height/2)+200);
 // text(quadrant3,width*0.25,(height/2)+60);
 //draw quad4 and count
-text("4",width*0.75,(height/2)+200);
+text("D",width*0.75,(height/2)+200);
 // text(quadrant4,width*0.75,(height/2)+60);
 
 // //Question Number
